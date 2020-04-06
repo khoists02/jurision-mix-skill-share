@@ -12,8 +12,8 @@ const VideoList = props => {
     <FlatList
       horizontal={true}
       data={props.data}
-      keyExtractor={(item, index) => item.resourceId}
-      renderItem={(item) => <VideoItem navigation={props.navigation} data={item} />}>
+      keyExtractor={(item, index) => item.resourceId.toString()}
+      renderItem={(item) => <VideoItem favouritePage={props.favouritePage} navigation={props.navigation} data={item} />}>
     </FlatList>
   </View>
 };

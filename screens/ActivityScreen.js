@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import NoResponseActivity from '../components/NoResponseActivity';
 
 const ActivityScreen = props => {
   return (
-    <View style={styles.container}>
+    <View style={{...props.style, ...styles.container}}>
       <NoResponseActivity style={{ flex: 1 }}></NoResponseActivity>
     </View>
   )
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     flex: 1
-  },
+  }
 });
 
 

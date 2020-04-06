@@ -9,13 +9,12 @@ import ImageCircle from '../common/ImageCircle';
 import { getVideoDetail } from '../../store/actions/videos';
 import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
+import { toogleFavouriteVideo } from '../../store/actions/videos';
 
 const VideoItem = props => {
   const { data } = props;
 
   const dispatch = useDispatch();
-
-
 
   if (data) {
     const { item } = data;
@@ -30,6 +29,11 @@ const VideoItem = props => {
       )
       dispatch(getVideoDetail(item.resourceId));
     };
+
+    const favouriteVideo = () => {
+      dispatch(toogleFavouriteVideo(item.resourceId));
+    };
+
     const { channelShortInfo } = item;
     return <TouchableOpacity onPress={item => redirectToVideo(item.resourceId)}>
       <View style={styles.container}>
@@ -50,11 +54,13 @@ const VideoItem = props => {
             <Text style={styles.title}>{item?.title}</Text>
             <Text style={styles.date}>{TimeAgo(item?.createdDateTime?.dateTime)}</Text>
           </View>
-          <View style={{ justifyContent: 'center' , flex: 1 , alignItems: 'flex-end' }}>
-            <TouchableOpacity onPress={()=> {}}>
-              <Ionicons name="ios-star-outline" size={25} color={Colors.activeColor}></Ionicons>
-            </TouchableOpacity>
-          </View>
+          {!props.favouritePage && (
+            <View style={{ justifyContent: 'center', flex: 1, alignItems: 'flex-end' }}>
+              <TouchableOpacity onPress={favouriteVideo}>
+                <Ionicons name={item.isFav ? 'ios-star' : 'ios-star-outline'} size={25} color={Colors.activeColor}></Ionicons>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
     </TouchableOpacity>
@@ -68,7 +74,8 @@ const styles = StyleSheet.create({
     ...MarginSize.BOTTOM_MD,
     ...MarginSize.RIGHT_MD,
     ...Border.ALL,
-    borderRadius: 6
+    borderRadius: 6,
+    overflow: 'hidden'
   },
   imgContainer: {
     height: 200,
@@ -95,7 +102,10 @@ const styles = StyleSheet.create({
     ...FontSize.fontH3,
     fontWeight: '500',
     ...MarginSize.TOP_SM,
-    ...MarginSize.BOTTOM_XS
+    ...MarginSize.BOTTOM_XS,
+    maxHeight: 22.5,
+    overflow: 'hidden',
+    maxWidth: 300
   },
   img: {
     resizeMode: 'cover',
@@ -107,7 +117,7 @@ const styles = StyleSheet.create({
   },
   authorTitle: {
     ...FontSize.fontH6,
-    color: Colors.primary
+    color: Colors.primary,
   }
 })
 

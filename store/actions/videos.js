@@ -1,12 +1,10 @@
-export const TOGGLE_FAVOURITE = 'TOGGLE_FAVOURITE';
+export const TOGGLE_FAVOURITE_VIDEO = 'TOGGLE_FAVOURITE_VIDEO';
 export const GET_VIDEO_DETAIL = 'GET_VIDEO_DETAIL';
 
-export const toogleFavourite = (id) => {
+export const toogleFavouriteVideo = (id) => {
   return {
-    type: TOGGLE_FAVOURITE,
-    payload: {
-      mealId: id
-    }
+    type: TOGGLE_FAVOURITE_VIDEO,
+    resourceId: id
   }
 };
 

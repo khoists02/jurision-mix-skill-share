@@ -1,15 +1,13 @@
-import React, { useEffect, useCallback }  from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import Filter from '../components/watch/FilterComponent';
-import { useSelector, useDispatch } from 'react-redux';
-import { toogleFavourite } from '../store/actions/meals';
+import { useSelector } from 'react-redux';
 import VideoList from '../components/watch/VideoList';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const WatchScreen = props => {
   const availabelVideos = useSelector(state=> state.video.videos);
-  const availabelFavouriteVideos = useSelector(state=> state.video.favouriteVideos)
-
+  const availabelFavouriteVideos = useSelector(state=> state.video.favouriteVideos);
   return (
     <ScrollView style={styles.container}>
       {/* FilterComponent */}
@@ -23,7 +21,7 @@ const WatchScreen = props => {
 
       {/* CategoriesComponent */}
       <View style={{ height: 400 }}>
-        <VideoList navigation={props.navigation} data={availabelFavouriteVideos}></VideoList>
+        <VideoList favouritePage={true} navigation={props.navigation} data={availabelFavouriteVideos}></VideoList>
       </View>
     </ScrollView>
   )

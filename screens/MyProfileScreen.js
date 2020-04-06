@@ -5,7 +5,7 @@ import NoResponseActivity from '../components/NoResponseActivity';
 const MyProfileScreen = props => {
   return (
     <View style={styles.container}>
-      <NoResponseActivity />
+      {/* <NoResponseActivity /> */}
     </View>
   )
 }

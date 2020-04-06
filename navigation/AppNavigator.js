@@ -13,6 +13,13 @@ import ProfileHeader from '../components/ProfileHeader';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import FilterScreen from '../screens/FilterScreen';
 import VideoDetailScreen from '../screens/VideoDetail';
+import { TouchableHighlight } from 'react-native';
+
+const Left = ({ onPress }) => (
+  <TouchableHighlight onPress={onPress}>
+    <Ionicons name="ios-arrow-back" size={25} color={Colors.txt} />
+  </TouchableHighlight>
+);
 
 const profileNavigator = createStackNavigator({
   Profile: {
@@ -56,13 +63,12 @@ const profileNavigator = createStackNavigator({
   Setting: {
     screen: SettingScreen,
     navigationOptions: {
-      headerBackTitle: ()=> <Ionicons name="ios-arrow-back" size={25} color={Colors.txt} />
+      // headerBackTitle: ()=> <Ionicons name="ios-arrow-back" size={25} color={Colors.txt} />
     }
   },
   Activity: {
     screen: ActivityScreen,
     navigationOptions: {
-      headerBackTitle: ()=> <Ionicons name="ios-arrow-back" size={25} color={Colors.txt} />
     }
   },
 });
@@ -77,7 +83,7 @@ const watchNavigator = createStackNavigator({
   Filter: {
     screen: FilterScreen,
     navigationOptions: {
-      headerBackTitle: ()=> <Ionicons name="ios-arrow-back" size={25} />,
+      // headerBackTitle: ()=> <Ionicons name="ios-arrow-back" size={25} />,
       headerTitle: ()=> <TextInput
         placeholder="Search Classes, Skills, Teachers"
         autoFocus
